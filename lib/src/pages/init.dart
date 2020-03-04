@@ -40,12 +40,12 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
     Widget carousel = new Carousel(
       boxFit: BoxFit.cover,
       images: [
-        NetworkImage('https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg'),
-        NetworkImage('https://cdn-images-1.medium.com/max/2000/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg'),
-        NetworkImage('https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg'),
-        NetworkImage('https://cdn-images-1.medium.com/max/2000/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg'),
-        NetworkImage('https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg'),
-        NetworkImage('https://cdn-images-1.medium.com/max/2000/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg'),
+        NetworkImage('https://img.freepik.com/vector-gratis/conjunto-logotipo-servicio-lavado-coches-espacio-texto-su-lema_1447-1419.jpg?size=338&ext=jpg'),
+        NetworkImage('https://image.freepik.com/vector-gratis/coleccion-logos-planos-lavado-coches_23-2148163828.jpg'),
+        NetworkImage('https://image.freepik.com/vector-gratis/conjunto-plantillas-diseno-logotipo-lavado-coches_9583-94.jpg'),
+        NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyPRdl-EaVnWU1xhqB_I1bbRQvpN1edAcnoVwi4yGBUtueBs8a'),
+        NetworkImage('https://imagenes.milenio.com/XeBEQilC3uyB93fP7fmlNWFaI7c=/958x596/https://www.milenio.com/uploads/media/2019/02/24/blue-side-nombre-negocio-tampiqueno_0_42_640_398.jpg'),
+        NetworkImage('https://image.shutterstock.com/image-photo/service-car-washing-sexual-woman-260nw-1569469726.jpg'),
         ExactAssetImage('assets/images/img_01.jpg'),
       ],
       animationCurve: Curves.fastOutSlowIn,
@@ -60,11 +60,15 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
     );
 
     Widget slogan = new Container(
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.network('https://picsum.photos/250?image=9')
-        ]
+      child: SizedBox(
+        height: screenHeight / 5,
+        width: screenHeight / 5,
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS7niuSCOcZBG8DyQRcnMW4WYRLY0khdCAjcknusArpY1iBf8v_')
+          ]
+        )
       )
     );
 
@@ -91,20 +95,22 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
     );
 
     return new Scaffold(
-      backgroundColor: Colors.yellow,
+      backgroundColor: Colors.white,
       body: new Center(
         child: new Container(
-          padding: EdgeInsets.only(top: 0.0, bottom: 0.0),
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
           height: screenHeight,
-          child: new Row(
+          child: new Column(
             children:<Widget>[
               slogan,
-              new Stack(
-                children: <Widget>[
-                  carousel,
-                  banner,
-                ],
-              )
+              Expanded (
+                child: Stack(
+                  children: <Widget>[
+                    carousel,
+                  ],
+                )
+              ),
+              slogan
             ],
           )
         ),
