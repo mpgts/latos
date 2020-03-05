@@ -59,7 +59,7 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
       overlayShadowSize: 0.7,
     );
 
-    Widget slogan = new Container(
+    Widget logo = new Container(
       child: SizedBox(
         height: screenHeight / 5,
         width: screenHeight / 5,
@@ -102,7 +102,7 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
           height: screenHeight,
           child: new Column(
             children:<Widget>[
-              slogan,
+              logo,
               Expanded (
                 child: Stack(
                   children: <Widget>[
@@ -110,7 +110,33 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
                   ],
                 )
               ),
-              slogan
+              Padding(
+            padding: const EdgeInsets.only(bottom: 2.0),
+              child:ClipPath(
+                
+                clipper: ClippingClass(),
+              child: Container(
+                
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                height: 320.0,
+                child: RaisedButton(
+                  child: Text('data', style: TextStyle(color: Colors.blue)),
+                  color: Colors.blue,
+                  splashColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0)
+                  ),
+                  padding: const EdgeInsets.all(40.0),
+                  onPressed: (){},
+                ),
+              ),
+            ),
+          ),
+
+
             ],
           )
         ),
@@ -123,4 +149,33 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
     controller.dispose();
     super.dispose();
   }
+}
+
+class ClippingClass extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = new Path();
+    path.lineTo(0.0, 50);
+
+    var firstControlPoint = Offset(size.width / 4, 10.0);
+    var firstEndPoint = Offset(size.width / 2.05, 50.0);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint =
+        Offset(size.width - (size.width / 4.0), 80);
+    var secondEndPoint = Offset(size.width, 30);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0.0, size.height);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
